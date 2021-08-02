@@ -6,6 +6,8 @@ const dataSet = []
 const boxForm = el('blank-boxes')
 const submitForm = el('submit-form')
 const boxValueArray = []
+const sentenceArray = []
+const paragraph = el('paragraph')
 
 function el(id){
     return document.getElementById(id)
@@ -52,6 +54,7 @@ function getBoxBlanks(tempTitle) {
     dataSet.forEach(set => {
         if(tempTitle === set.title) {
             iterateBlanks(set.blanks)
+            getSentences(set.value)
         }
     })   
 }
@@ -64,7 +67,9 @@ function iterateBlanks(blanks){
 
 function renderBoxFromBlank(blank) {
     const input = document.createElement('input')
+    input.className = 'box-values'
     input.type = 'text'
+    input.value = ""
     input.placeholder = `${blank}`
     boxForm.append(input)
 }
@@ -78,14 +83,20 @@ function createSubmitButton(){
 
 submitForm.addEventListener('submit', e => {
     e.preventDefault()
-    console.log('clicked')
     collectBoxValues()
 })
 
-
-
+// this function creates an array with all of the box values
 function collectBoxValues() {
-    const inputArray = document.querySelectorAll('input')
-    console.log(inputArray)
-    inputArray.forEach(input => console.log(input.value))
+    const inputArray = document.querySelectorAll('input.box-values')
+    inputArray.forEach(input => boxValueArray.push(input.value)) 
+    console.log(boxValueArray)   
 }
+
+function getSentences(sentences) {
+    sentences.forEach(sentence => {
+        sentenceArray.push(sentence)
+    })
+    console.log(sentenceArray)
+}
+console.log('run first')
