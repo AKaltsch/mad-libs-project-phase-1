@@ -1,23 +1,91 @@
 const templates = "http://localhost:3000/templates"
 const playButton = el('play-button')
 const pageBody = el('main-content')
+const dropDownForm = el('dropdown-form')
+const dataSet = []
+const boxForm = el('blank-boxes')
+const submitForm = el('submit-form')
+const boxValueArray = []
 
 function el(id){
     return document.getElementById(id)
 }
 
-fetch(templates)
-.then(resp => resp.json())
-.then(data => console.log(data))
-
+function loadData(dataset) {
+    //console.log(dataset)
+    dataset.forEach(data => {
+        dataSet.push(data)
+        appendTitle(data)})
+}
 
 playButton.addEventListener('click', () => {
-    showDropdown()
+    showDropdown()  
 })
 
 function showDropdown() {
     const label = document.createElement('label')
-    label.innerText = 'Choose Your Template'
+    label.innerText = 'Choose Your Template  '
     const dropDown = document.createElement('select')
-    pageBody.append(label, dropDown)
+    dropDown.addEventListener('change', e => {
+        boxForm.innerHTML = ''
+        getBoxBlanks(e.target.value)
+        createSubmitButton()
+    })
+    dropDown.id = 'drop-templates'
+    dropDown.name = templates
+    dropDownForm.append(label, dropDown)
+    fetch(templates)
+    .then(resp => resp.json())
+    .then(dataset => loadData(dataset))
+}
+
+function appendTitle(template) {
+    const option = document.createElement('option')
+    const dropDown = el('drop-templates')
+    // console.log(dropDown)
+    option.innerText = template.title
+    option.value = template.title
+    dropDown.append(option)
+}
+
+function getBoxBlanks(tempTitle) {
+    dataSet.forEach(set => {
+        if(tempTitle === set.title) {
+            iterateBlanks(set.blanks)
+        }
+    })   
+}
+
+function iterateBlanks(blanks){
+    blanks.forEach(blank => {
+        renderBoxFromBlank(blank)
+    })
+}
+
+function renderBoxFromBlank(blank) {
+    const input = document.createElement('input')
+    input.type = 'text'
+    input.placeholder = `${blank}`
+    boxForm.append(input)
+}
+
+function createSubmitButton(){
+    const submit = document.createElement('input')
+    submit.type = 'submit'
+    submit.value = 'Show Me My MAD-LIBS!!!'
+    submitForm.append(submit)
+}
+
+submitForm.addEventListener('submit', e => {
+    e.preventDefault()
+    console.log('clicked')
+    collectBoxValues()
+})
+
+
+
+function collectBoxValues() {
+    const inputArray = document.querySelectorAll('input')
+    console.log(inputArray)
+    inputArray.forEach(input => console.log(input.value))
 }
