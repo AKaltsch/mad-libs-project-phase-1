@@ -5,7 +5,7 @@ const dropDownForm = el('dropdown-form')
 const dataSet = []
 const boxForm = el('blank-boxes')
 const submitForm = el('submit-form')
-const boxValueArray = []
+//const boxValueArray = []
 const sentenceArray = []
 const paragraph = el('paragraph')
 const resetForm = el("reset")
@@ -86,21 +86,16 @@ submitForm.addEventListener('submit', e => {
     e.preventDefault()
     collectBoxValues()
     if (boxValueArray.includes(null || "")){
+        //console.log(boxValueArray)
         alert("Please fill out all boxes");
-        collectBoxValues()
+        //boxValueArray = []
     } else {
     createParagraph(sentenceArray, boxValueArray)
     renderReset()
 }})
 
-// submitForm.addEventListener('submit', e => {
-//     e.preventDefault()
-//     collectBoxValues()
-//     createParagraph(sentenceArray, boxValueArray)
-//     renderReset()
-// })
-
 function collectBoxValues() {
+    boxValueArray = []
     const inputArray = document.querySelectorAll('input.box-values')
     inputArray.forEach(input => boxValueArray.push(input.value)) 
     return boxValueArray
