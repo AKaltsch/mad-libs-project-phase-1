@@ -105,21 +105,19 @@ function getSentences(sentences) {
     return sentenceArray
 }
 
-console.log(sentenceArray)
+//console.log(sentenceArray)
 
 function createParagraph(sentenceArray, boxValueArray) {
     i = 0
-    madLib = []
+    let madLib = []
     do {
         madLib.push(sentenceArray[i] + boxValueArray[i]);
         i++
     }
     while(boxValueArray.length > i)
-    madLib = madLib + sentenceArray[-1]
-    console.log(madLib)
-    appendMadLib(madLib)
-}
-
-function appendMadLib(madlib){
-    paragraph.append(madlib)
+    const endSentence = sentenceArray.slice(boxValueArray.length, -1)
+    console.log(endSentence)
+    madLib = madLib + endSentence
+    //madLib = madLib.join(' ')
+    paragraph.append(madLib)
 }
