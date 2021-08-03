@@ -5,7 +5,6 @@ const dropDownForm = el('dropdown-form')
 const dataSet = []
 const boxForm = el('blank-boxes')
 const submitForm = el('submit-form')
-//const boxValueArray = []
 const sentenceArray = []
 const paragraph = el('paragraph')
 const resetForm = el("reset")
@@ -55,6 +54,7 @@ function getBoxBlanks(tempTitle) {
         if(tempTitle === set.title) {
             iterateBlanks(set.blanks)
             getSentences(set.value)
+            console.log(set.value)
         }
     })   
 }
@@ -86,9 +86,7 @@ submitForm.addEventListener('submit', e => {
     e.preventDefault()
     collectBoxValues()
     if (boxValueArray.includes(null || "")){
-        //console.log(boxValueArray)
         alert("Please fill out all boxes");
-        //boxValueArray = []
     } else {
     createParagraph(sentenceArray, boxValueArray)
     renderReset()
@@ -130,6 +128,7 @@ function renderReset() {
 }
 
 resetForm.addEventListener('click', () => {
+    //dropDownForm.innerHTML = ""
     boxForm.innerHTML = ""
     submitForm.innerHTML = ""
     paragraph.innerHTML = ""
