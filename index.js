@@ -84,19 +84,42 @@ function createSubmitButton(){
 submitForm.addEventListener('submit', e => {
     e.preventDefault()
     collectBoxValues()
+    createParagraph(sentenceArray, boxValueArray)
 })
 
 // this function creates an array with all of the box values
 function collectBoxValues() {
+    //const boxValueArray = []
     const inputArray = document.querySelectorAll('input.box-values')
     inputArray.forEach(input => boxValueArray.push(input.value)) 
-    console.log(boxValueArray)   
+    //console.log(boxValueArray)
+    return boxValueArray
 }
 
 function getSentences(sentences) {
+    //const sentenceArray = []
     sentences.forEach(sentence => {
         sentenceArray.push(sentence)
     })
-    console.log(sentenceArray)
+    //console.log(sentenceArray)
+    return sentenceArray
 }
-console.log('run first')
+
+console.log(sentenceArray)
+
+function createParagraph(sentenceArray, boxValueArray) {
+    i = 0
+    madLib = []
+    do {
+        madLib.push(sentenceArray[i] + boxValueArray[i]);
+        i++
+    }
+    while(boxValueArray.length > i)
+    madLib = madLib + sentenceArray[-1]
+    console.log(madLib)
+    appendMadLib(madLib)
+}
+
+function appendMadLib(madlib){
+    paragraph.append(madlib)
+}
