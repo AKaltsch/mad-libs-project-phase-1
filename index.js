@@ -8,19 +8,20 @@ const submitForm = el('submit-form')
 const boxValueArray = []
 const sentenceArray = []
 const paragraph = el('paragraph')
+const resetForm = el("reset")
 
 function el(id){
     return document.getElementById(id)
 }
 
 function loadData(dataset) {
-    //console.log(dataset)
     dataset.forEach(data => {
         dataSet.push(data)
         appendTitle(data)})
 }
 
 playButton.addEventListener('click', () => {
+    dropDownForm.innerHTML = ""
     showDropdown()  
 })
 
@@ -44,7 +45,6 @@ function showDropdown() {
 function appendTitle(template) {
     const option = document.createElement('option')
     const dropDown = el('drop-templates')
-    // console.log(dropDown)
     option.innerText = template.title
     option.value = template.title
     dropDown.append(option)
@@ -75,6 +75,7 @@ function renderBoxFromBlank(blank) {
 }
 
 function createSubmitButton(){
+    submitForm.innerHTML = ""
     const submit = document.createElement('input')
     submit.type = 'submit'
     submit.value = 'Show Me My MAD-LIBS!!!'
@@ -84,28 +85,33 @@ function createSubmitButton(){
 submitForm.addEventListener('submit', e => {
     e.preventDefault()
     collectBoxValues()
+    if (boxValueArray.includes(null || "")){
+        alert("Please fill out all boxes");
+        collectBoxValues()
+    } else {
     createParagraph(sentenceArray, boxValueArray)
-})
+    renderReset()
+}})
 
-// this function creates an array with all of the box values
+// submitForm.addEventListener('submit', e => {
+//     e.preventDefault()
+//     collectBoxValues()
+//     createParagraph(sentenceArray, boxValueArray)
+//     renderReset()
+// })
+
 function collectBoxValues() {
-    //const boxValueArray = []
     const inputArray = document.querySelectorAll('input.box-values')
     inputArray.forEach(input => boxValueArray.push(input.value)) 
-    //console.log(boxValueArray)
     return boxValueArray
 }
 
 function getSentences(sentences) {
-    //const sentenceArray = []
     sentences.forEach(sentence => {
         sentenceArray.push(sentence)
     })
-    //console.log(sentenceArray)
     return sentenceArray
 }
-
-//console.log(sentenceArray)
 
 function createParagraph(sentenceArray, boxValueArray) {
     i = 0
@@ -116,8 +122,21 @@ function createParagraph(sentenceArray, boxValueArray) {
     }
     while(boxValueArray.length > i)
     const endSentence = sentenceArray.slice(boxValueArray.length, -1)
-    console.log(endSentence)
     madLib = madLib + endSentence
-    //madLib = madLib.join(' ')
     paragraph.append(madLib)
 }
+
+function renderReset() {
+    const reset = document.createElement('button')
+    reset.innerText = "Play Again?"
+    reset.id = "reset-button"
+    reset.type = 'button'
+    resetForm.append(reset)
+}
+
+resetForm.addEventListener('click', () => {
+    boxForm.innerHTML = ""
+    submitForm.innerHTML = ""
+    paragraph.innerHTML = ""
+    resetForm.innerHTML = ""
+})
