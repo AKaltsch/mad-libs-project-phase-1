@@ -8,6 +8,8 @@ const submitForm = el('submit-form')
 const sentenceArray = []
 const paragraph = el('paragraph')
 const resetForm = el("reset")
+const paragraphP = document.createElement('p')
+
 
 function el(id){
     return document.getElementById(id)
@@ -115,8 +117,11 @@ function createParagraph(sentenceArray, boxValueArray) {
     }
     while(boxValueArray.length > i)
     const endSentence = sentenceArray.slice(boxValueArray.length, -1)
-    madLib = madLib + endSentence
-    paragraph.append(madLib)
+    //madLib = madLib + endSentence
+    madLib.push(endSentence)
+    console.log(madLib)
+    paragraphP.append(madLib.join(' '))
+    paragraph.append(paragraphP)
 }
 
 function renderReset() {
@@ -128,7 +133,6 @@ function renderReset() {
 }
 
 resetForm.addEventListener('click', () => {
-    //dropDownForm.innerHTML = ""
     boxForm.innerHTML = ""
     submitForm.innerHTML = ""
     paragraph.innerHTML = ""
