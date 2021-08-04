@@ -5,10 +5,10 @@ const dropDownForm = el('dropdown-form')
 const dataSet = []
 const boxForm = el('blank-boxes')
 const submitForm = el('submit-form')
-const sentenceArray = []
+let sentenceArray = []
 const paragraph = el('paragraph')
 const resetForm = el("reset")
-const paragraphP = document.createElement('p')
+let madlib = []
 
 
 function el(id){
@@ -56,7 +56,7 @@ function getBoxBlanks(tempTitle) {
         if(tempTitle === set.title) {
             iterateBlanks(set.blanks)
             getSentences(set.value)
-            console.log(set.value)
+            //console.log(set.value)
         }
     })   
 }
@@ -102,6 +102,7 @@ function collectBoxValues() {
 }
 
 function getSentences(sentences) {
+    sentenceArray = []
     sentences.forEach(sentence => {
         sentenceArray.push(sentence)
     })
@@ -109,18 +110,22 @@ function getSentences(sentences) {
 }
 
 function createParagraph(sentenceArray, boxValueArray) {
+    const paragraphP = document.createElement('p')
+
+    madlib = []
     i = 0
-    let madLib = []
     do {
-        madLib.push(sentenceArray[i] + boxValueArray[i]);
+        madlib.push(sentenceArray[i] + boxValueArray[i]);
         i++
     }
     while(boxValueArray.length > i)
+
     const endSentence = sentenceArray.slice(boxValueArray.length, -1)
-    //madLib = madLib + endSentence
-    madLib.push(endSentence)
-    console.log(madLib)
-    paragraphP.append(madLib.join(' '))
+    console.log(boxValueArray)
+    console.log(sentenceArray)
+    madlib.push(endSentence)
+    console.log(madlib)
+    paragraphP.append(madlib.join(' '))
     paragraph.append(paragraphP)
 }
 
@@ -133,6 +138,7 @@ function renderReset() {
 }
 
 resetForm.addEventListener('click', () => {
+    //paragraphP.innerText = ""
     boxForm.innerHTML = ""
     submitForm.innerHTML = ""
     paragraph.innerHTML = ""
