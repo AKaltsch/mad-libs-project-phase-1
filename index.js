@@ -74,7 +74,9 @@ function iterateBlanksAndRenderBox(blanks){
 
 function createSubmitButton(){
     submitForm.innerHTML = ""
-    const submit = document.createElement('input')
+    // const submit = document.createElement('input')
+    const submit = document.createElement('button')
+    submit.id = "submit-button"
     submit.type = 'submit'
     submit.value = 'Show Me My MAD-LIBS!!!'
     submitForm.append(submit)
