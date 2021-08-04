@@ -9,6 +9,7 @@ let sentenceArray = []
 const paragraph = el('paragraph')
 const resetForm = el("reset")
 let madlib = []
+let counter = 0
 
 
 function el(id){
@@ -54,7 +55,7 @@ function appendTitle(template) {
 function getBoxBlanks(tempTitle) {
     dataSet.forEach(set => {
         if(tempTitle === set.title) {
-            iterateBlanksAndRenderBox(set.blanks)
+            iterateBlanksAndRenderBox(set.blanks);
             getSentences(set.value)
         }
     })   
@@ -87,6 +88,8 @@ submitForm.addEventListener('submit', e => {
     } else {
     createParagraph(sentenceArray, boxValueArray)
     renderReset()
+    counter += 1
+    increaseGameCounter()
 }})
 
 function collectBoxValues() {
@@ -130,3 +133,8 @@ resetForm.addEventListener('click', () => {
     paragraph.innerHTML = ""
     resetForm.innerHTML = ""
 })
+
+function increaseGameCounter() {
+    const gameCounter = el("game-counter")
+    gameCounter.innerHTML = `${counter} Games Played`
+}
