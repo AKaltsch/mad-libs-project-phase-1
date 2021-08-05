@@ -5,9 +5,10 @@ const dropDownForm = el('dropdown-form')
 const dataSet = []
 const boxForm = el('blank-boxes')
 const submitForm = el('submit-form')
-let sentenceArray = []
+const sentenceArray = []
 const paragraph = el('paragraph')
 const resetForm = el("reset")
+const paragraphP = document.createElement('p')
 let madlib = []
 let counter = 0
 
@@ -31,6 +32,7 @@ function showDropdown() {
     const label = document.createElement('label')
     label.innerText = 'Choose Your Template  '
     const dropDown = document.createElement('select')
+    dropDown.classList.add("test-dropdown")
     dropDown.addEventListener('change', e => {
         boxForm.innerHTML = ''
         getBoxBlanks(e.target.value)
@@ -57,6 +59,7 @@ function getBoxBlanks(tempTitle) {
         if(tempTitle === set.title) {
             iterateBlanksAndRenderBox(set.blanks);
             getSentences(set.value)
+            console.log(set.value)
         }
     })   
 }
@@ -74,9 +77,9 @@ function iterateBlanksAndRenderBox(blanks){
 
 function createSubmitButton(){
     submitForm.innerHTML = ""
-    // const submit = document.createElement('input')
-    const submit = document.createElement('button')
-    submit.id = "submit-button"
+    const submit = document.createElement('input')
+    submit.class = 'button'
+    submit.id= 'submit-button'
     submit.type = 'submit'
     submit.value = 'Show Me My MAD-LIBS!!!'
     submitForm.append(submit)
@@ -101,7 +104,6 @@ function collectBoxValues() {
 }
 
 function getSentences(sentences) {
-    sentenceArray = []
     sentences.forEach(sentence => {
         sentenceArray.push(sentence)
     })
@@ -124,7 +126,7 @@ function renderReset() {
     const reset = document.createElement('button')
     reset.innerText = "Play Again?"
     reset.id = "reset-button"
-    reset.type = 'button'
+    reset.class = 'button'
     resetForm.append(reset)
 }
 
