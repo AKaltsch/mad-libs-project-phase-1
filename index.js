@@ -91,7 +91,6 @@ submitForm.addEventListener('submit', e => {
     createParagraph(sentenceArray, boxValueArray)
     renderReset()
     counter += 1
-    increaseGameCounter()
 }})
 
 function collectBoxValues() {
@@ -136,7 +135,3 @@ resetForm.addEventListener('click', () => {
     resetForm.innerHTML = ""
 })
 
-function increaseGameCounter() {
-    const gameCounter = el("game-counter")
-    gameCounter.innerHTML = `${counter} Games Played`
-}
