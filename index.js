@@ -8,7 +8,12 @@ const submitForm = el('submit-form')
 const sentenceArray = []
 const paragraph = el('paragraph')
 const resetForm = el("reset")
+<<<<<<< HEAD
 const paragraphP = document.createElement('p')
+=======
+let madlib = []
+let counter = 0
+>>>>>>> bbd74d0553df50ac9103a9270c140d04d6652e47
 
 
 function el(id){
@@ -54,26 +59,25 @@ function appendTitle(template) {
 function getBoxBlanks(tempTitle) {
     dataSet.forEach(set => {
         if(tempTitle === set.title) {
-            iterateBlanks(set.blanks)
+            iterateBlanksAndRenderBox(set.blanks);
             getSentences(set.value)
+<<<<<<< HEAD
             console.log(set.value)
+=======
+>>>>>>> bbd74d0553df50ac9103a9270c140d04d6652e47
         }
     })   
 }
 
-function iterateBlanks(blanks){
+function iterateBlanksAndRenderBox(blanks){
     blanks.forEach(blank => {
-        renderBoxFromBlank(blank)
+        const input = document.createElement('input')
+        input.className = 'box-values'
+        input.type = 'text'
+        input.value = ""
+        input.placeholder = `${blank}`
+        boxForm.append(input)
     })
-}
-
-function renderBoxFromBlank(blank) {
-    const input = document.createElement('input')
-    input.className = 'box-values'
-    input.type = 'text'
-    input.value = ""
-    input.placeholder = `${blank}`
-    boxForm.append(input)
 }
 
 function createSubmitButton(){
@@ -94,6 +98,8 @@ submitForm.addEventListener('submit', e => {
     } else {
     createParagraph(sentenceArray, boxValueArray)
     renderReset()
+    counter += 1
+    increaseGameCounter()
 }})
 
 function collectBoxValues() {
@@ -111,18 +117,14 @@ function getSentences(sentences) {
 }
 
 function createParagraph(sentenceArray, boxValueArray) {
-    i = 0
-    let madLib = []
-    do {
-        madLib.push(sentenceArray[i] + boxValueArray[i]);
-        i++
+    const paragraphP = document.createElement('p')
+    madlib = []
+    for (let i = 0; i < boxValueArray.length; i++){
+        madlib.push(sentenceArray[i] + boxValueArray[i]);
     }
-    while(boxValueArray.length > i)
     const endSentence = sentenceArray.slice(boxValueArray.length, -1)
-    //madLib = madLib + endSentence
-    madLib.push(endSentence)
-    console.log(madLib)
-    paragraphP.append(madLib.join(' '))
+    madlib.push(endSentence)
+    paragraphP.append(madlib.join(' '))
     paragraph.append(paragraphP)
 }
 
@@ -140,3 +142,8 @@ resetForm.addEventListener('click', () => {
     paragraph.innerHTML = ""
     resetForm.innerHTML = ""
 })
+
+function increaseGameCounter() {
+    const gameCounter = el("game-counter")
+    gameCounter.innerHTML = `${counter} Games Played`
+}
