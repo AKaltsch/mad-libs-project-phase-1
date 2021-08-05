@@ -15,6 +15,24 @@ body {
 		background-position: 0% 50%;
 	}
 }
+  
+  .container {
+    width: 30rem;
+    font-size: 24px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    display:block;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 40px 40px 40px 40px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
+  }
+
 hr {
     border: 0;
     height: 1px;
@@ -26,6 +44,44 @@ img {
     margin-right: auto;
     padding-top: 50px;
     padding-bottom: 25px;
+}
+h2 {
+    padding-bottom: 25px;
+
+}
+h3 {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 20px;
+    padding: 20px 100px 20px 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+h4 {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 100px 20px 100px;
+}
+h6 {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 100px 20px 100px;    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 100px 20px 100px;
 }
 #reset-button {
     background-color: #338128;
@@ -63,9 +119,7 @@ img {
     text-overflow: ellipsis;
     column-count: 4;
 }
-.box-values:hover {
-    overflow:visible;
-}
+
 
 #play-button {
     background-color: #338128;
@@ -90,7 +144,7 @@ img {
 
   #play-button:hover {opacity: 1}
 
-  #submit-form {
+  #submit-button { 
     background-color: #338128;
     border: none;
     color: white;
@@ -111,4 +165,4 @@ img {
     margin-left: auto;
   }
 
-  #submit-form:hover {opacity: 1}
+  #submit-button:hover {opacity: 1}

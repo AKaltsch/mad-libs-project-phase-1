@@ -5,11 +5,10 @@ const dropDownForm = el('dropdown-form')
 const dataSet = []
 const boxForm = el('blank-boxes')
 const submitForm = el('submit-form')
-let sentenceArray = []
+const sentenceArray = []
 const paragraph = el('paragraph')
 const resetForm = el("reset")
-let madlib = []
-let counter = 0
+const paragraphP = document.createElement('p')
 
 
 function el(id){
@@ -55,26 +54,33 @@ function appendTitle(template) {
 function getBoxBlanks(tempTitle) {
     dataSet.forEach(set => {
         if(tempTitle === set.title) {
-            iterateBlanksAndRenderBox(set.blanks);
+            iterateBlanks(set.blanks)
             getSentences(set.value)
+            console.log(set.value)
         }
     })   
 }
 
-function iterateBlanksAndRenderBox(blanks){
+function iterateBlanks(blanks){
     blanks.forEach(blank => {
-        const input = document.createElement('input')
-        input.className = 'box-values'
-        input.type = 'text'
-        input.value = ""
-        input.placeholder = `${blank}`
-        boxForm.append(input)
+        renderBoxFromBlank(blank)
     })
+}
+
+function renderBoxFromBlank(blank) {
+    const input = document.createElement('input')
+    input.className = 'box-values'
+    input.type = 'text'
+    input.value = ""
+    input.placeholder = `${blank}`
+    boxForm.append(input)
 }
 
 function createSubmitButton(){
     submitForm.innerHTML = ""
     const submit = document.createElement('input')
+    submit.class = 'button'
+    submit.id= 'submit-button'
     submit.type = 'submit'
     submit.value = 'Show Me My MAD-LIBS!!!'
     submitForm.append(submit)
@@ -88,8 +94,6 @@ submitForm.addEventListener('submit', e => {
     } else {
     createParagraph(sentenceArray, boxValueArray)
     renderReset()
-    counter += 1
-    increaseGameCounter()
 }})
 
 function collectBoxValues() {
@@ -100,7 +104,6 @@ function collectBoxValues() {
 }
 
 function getSentences(sentences) {
-    sentenceArray = []
     sentences.forEach(sentence => {
         sentenceArray.push(sentence)
     })
@@ -108,14 +111,18 @@ function getSentences(sentences) {
 }
 
 function createParagraph(sentenceArray, boxValueArray) {
-    const paragraphP = document.createElement('p')
-    madlib = []
-    for (let i = 0; i < boxValueArray.length; i++){
-        madlib.push(sentenceArray[i] + boxValueArray[i]);
+    i = 0
+    let madLib = []
+    do {
+        madLib.push(sentenceArray[i] + boxValueArray[i]);
+        i++
     }
+    while(boxValueArray.length > i)
     const endSentence = sentenceArray.slice(boxValueArray.length, -1)
-    madlib.push(endSentence)
-    paragraphP.append(madlib.join(' '))
+    //madLib = madLib + endSentence
+    madLib.push(endSentence)
+    console.log(madLib)
+    paragraphP.append(madLib.join(' '))
     paragraph.append(paragraphP)
 }
 
@@ -123,7 +130,7 @@ function renderReset() {
     const reset = document.createElement('button')
     reset.innerText = "Play Again?"
     reset.id = "reset-button"
-    reset.type = 'button'
+    reset.class = 'button'
     resetForm.append(reset)
 }
 
@@ -133,8 +140,3 @@ resetForm.addEventListener('click', () => {
     paragraph.innerHTML = ""
     resetForm.innerHTML = ""
 })
-
-function increaseGameCounter() {
-    const gameCounter = el("game-counter")
-    gameCounter.innerHTML = `${counter} Games Played`
-}
