@@ -59,7 +59,6 @@ function getBoxBlanks(tempTitle) {
         if(tempTitle === set.title) {
             iterateBlanksAndRenderBox(set.blanks);
             getSentences(set.value)
-            console.log(set.value)
         }
     })   
 }
