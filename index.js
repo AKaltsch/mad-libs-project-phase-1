@@ -5,7 +5,7 @@ const dropDownForm = el('dropdown-form')
 const dataSet = []
 const boxForm = el('blank-boxes')
 const submitForm = el('submit-form')
-const sentenceArray = []
+let sentenceArray = []
 const paragraph = el('paragraph')
 const resetForm = el("reset")
 const paragraphP = document.createElement('p')
@@ -104,6 +104,7 @@ function collectBoxValues() {
 }
 
 function getSentences(sentences) {
+    sentenceArray = []
     sentences.forEach(sentence => {
         sentenceArray.push(sentence)
     })
