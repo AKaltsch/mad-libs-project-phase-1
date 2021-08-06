@@ -135,5 +135,7 @@ resetForm.addEventListener('click', () => {
     submitForm.innerHTML = ""
     paragraph.innerHTML = ""
     resetForm.innerHTML = ""
+    dropDownForm.innerHTML = ""
+    showDropdown()
 })
 

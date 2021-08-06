@@ -21,7 +21,7 @@
             "blanks": ["adjective", "verb", "verb", "verb", "plural noun", "verb", "verb", "past tense verb", "plural noun", "adjective", "verb",
                         "plural noun", "noun", "verb", "past tense verb", "noun", "noun", "noun", "past tense verb", "adjective", "past tense verb",
                         "past tense verb", "noun", "past tense verb"],
-            "value": ["Once up a time, there were three ", " pigs. One day, their mother said, \"You are all grown up and must ", " on your own.\" So they left to ",
+            "value": ["Once upon a time, there were three ", " pigs. One day, their mother said, \"You are all grown up and must ", " on your own.\" So they left to ",
                         " their houses. The first little pig wanted only to ", " all day and quickly built his house out of ", ". The second little pig wanted to ",
                         " and ", " all day so he ", " his house with ", ". The third ", " pig knew the wolf lived nearby and worked hard to ", " his house out of ",
                         ". One day, the wolf knocked on the first pig's ", ". \"Let me in or I'll ", " your house down!\" The pig didn't, so the wolf ", " down the ",

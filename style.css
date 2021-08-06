@@ -1,5 +1,8 @@
 body {
-	background: linear-gradient(-45deg, #000000, #b80000, #ffe13a, #006b00);
+	/* background: linear-gradient(-45deg, #000000, #b80000, #ffe13a, #006b00); */
+  background: linear-gradient(-45deg, #000000, #b80000, #000000, #ffe13a, #000000, #006b00);
+  /* background: linear-gradient(-45deg, #000000, #b80000, #000000, #ffe13a); */
+
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 }
@@ -109,7 +112,8 @@ h6 {
 .box-values {
     height: 30px;
     width: 200px;
-    background-color: #fff;
+    background-color: white; 
+    /* background-color: #b80000;  */
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
     color: #000;
@@ -118,6 +122,8 @@ h6 {
     overflow: hidden;
     text-overflow: ellipsis;
     column-count: 4;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
