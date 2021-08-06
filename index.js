@@ -29,8 +29,8 @@ playButton.addEventListener('click', () => {
 })
 
 function showDropdown() {
-    const label = document.createElement('label')
-    label.innerText = 'Choose Your Template  '
+    //const label = document.createElement('label')
+    //label.innerText = 'Choose Your Template  '
     const dropDown = document.createElement('select')
     dropDown.classList.add("test-dropdown")
     dropDown.addEventListener('change', e => {
@@ -40,7 +40,7 @@ function showDropdown() {
     })
     dropDown.id = 'drop-templates'
     dropDown.name = templates
-    dropDownForm.append(label, dropDown)
+    dropDownForm.append(dropDown)
     fetch(templates)
     .then(resp => resp.json())
     .then(dataset => loadData(dataset))
